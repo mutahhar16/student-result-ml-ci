@@ -1,3 +1,4 @@
+
 import os
 import unittest
 
@@ -16,7 +17,8 @@ class TestMLPipeline(unittest.TestCase):
         cls.data = pd.read_csv("student_results.csv")
 
     def test_dataset_has_300_records(self):
-        self.assertEqual(len(self.data), 300)
+        # Intentional failure demonstration
+        self.assertEqual(len(self.data), 301)
 
     def test_dataset_has_required_columns(self):
         expected = {
