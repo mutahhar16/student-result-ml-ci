@@ -1,7 +1,7 @@
 import json
 import sys
 
-MINIMUM_ACCURACY = 0.85
+MINIMUM_ACCURACY = 1.01
 
 
 def main():
