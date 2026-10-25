@@ -41,13 +41,11 @@ jobs:
       - name: Run automated ML tests
         run: python -m unittest discover -v
 
+      # Intentional failure test for Practical 4
       - name: Upload validated ML artifacts
         uses: actions/upload-artifact@v7
         with:
           name: student-result-ml-artifacts
-          path: |
-            student_result_model_missing.pkl
-            metrics.json
-            student_results.csv
+          path: student_result_model_missing.pkl
           if-no-files-found: error
           retention-days: 7
