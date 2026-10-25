@@ -1,3 +1,4 @@
+
 name: Student Result ML CI
 
 on:
@@ -13,23 +14,29 @@ permissions:
   contents: read
 
 jobs:
-  test:
+  train-and-test:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
-          python-version: "3.11"
+          python-version: '3.11'
 
-      - name: Install dependencies
-        run: python -m pip install -r requirements.txt
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
 
-      - name: Train ML model
+      - name: Install ML dependencies
+        run: pip install -r requirements.txt
+
+      - name: Train student result model
         run: python train_model.py
 
-      - name: Run automated tests
-        run: python -m unittest -v test_ml_pipeline.py
+      - name: Check ML quality gate
+        run: python quality_gate.py
+
+      - name: Run automated ML tests
+        run: python -m unittest discover -v
